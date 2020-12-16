@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <style>
+        table {
+            border: 1px solid black;
+            text-align: center;
+            margin: 20px;
+            height: 500px;
+        }
+
+        th {
+            padding: 20px 20px;
+            border-spacing: 10px;
+        }
+
+        td {
+            column-width: 100px;
+            padding: 15px 15px 20px;
+        }
+
+        .row {
+            padding: 10px;
+            display: inline-block;
+            float: left;
+        }
+
+        canvas {
+            border: 1px solid black;
+            margin: 20px;
+            width: 1000px !important;
+            height: 500px !important;
+        }
+
+    </style>
+</head>
+<body>
+
+<div style="clear: both"></div>
+
+<div class="row">
+    <table style="float: left">
+        <tr>
+            <th colspan="2">Sensor 1</th>
+        </tr>
+        <tr>
+            <td>Temperature</td>
+            <td>Humidity</td>
+        </tr>
+        <tr>
+            <td id="dummy-temp-1/temperature">-</td>
+            <td id="dummy-temp-1/humidity">-</td>
+        </tr>
+    </table>
+    <canvas id="dummy-temp-1/graph"></canvas>
+</div>
+
+<div style="clear: both"></div>
+
+<div class="row">
+    <table style="float: left;">
+        <tr>
+            <th colspan="2">Sensor 2</th>
+        </tr>
+        <tr>
+            <td>Temperature</td>
+            <td>Humidity</td>
+        </tr>
+        <tr>
+            <td id="dummy-temp-2/temperature">-</td>
+            <td id="dummy-temp-2/humidity">-</td>
+        </tr>
+    </table>
+    <canvas id="dummy-temp-2/graph"></canvas>
+</div>
+
+<div style="clear: both"></div>
+
+<div class="row">
+    <table style="float: left">
+        <tr>
+            <th colspan="2">Sensor 3</th>
+        </tr>
+        <tr>
+            <td>Temperature</td>
+            <td>Humidity</td>
+        </tr>
+        <tr>
+            <td id="dummy-temp-3/temperature">-</td>
+            <td id="dummy-temp-3/humidity">-</td>
+        </tr>
+    </table>
+    <canvas id="dummy-temp-3/graph"></canvas>
+</div>
+
+<div style="clear: both"></div>
+
+
+</body>
+
+
+<script>
+    window.onload = () => {
+        let sensors = {}
+        const socket = io();
+        socket.on('init', (msg) => {
+            for (const device of msg.devices) {
+                sensors[device] = {
+                    temperature: document.getElementById(`${device}/temperature`),
+                    humidity: document.getElementById(`${device}/humidity`)
+                };
+            }
+        });
+        socket.on('realtime', (msg) => {
+            sensors[msg.sensor].temperature.innerText = msg.temperature.toFixed(2);
+            sensors[msg.sensor].humidity.innerText = msg.humidity.toFixed(2);
+        });
+        socket.on('plot', (msg) => {
+            const device = msg[0].device;
+            const ctx = document.getElementById(`${device}/graph`).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: msg.map(d => (new Date(d.time)).toLocaleTimeString()),
+                    datasets: [
+                        {
+                            label: 'Temperature',
+                            data: msg.map(d => d.temperature),
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)'
+                        }, {
+                            label: 'Humidity',
+                            data: msg.map(d => d.humidity),
+                            borderColor: 'rgba(192, 192, 192, 1)',
+                            backgroundColor: 'rgba(192, 192, 192, 0.2)'
+                        },
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                suggestedMin: 0,
+                                suggestedMax: 100
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    }
+</script>
+</html>
