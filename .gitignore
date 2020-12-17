@@ -105,3 +105,5 @@ dist
 
 # Service key
 api/serviceKeys
+node_modules
+.idea
