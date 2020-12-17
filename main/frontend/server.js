@@ -9,10 +9,10 @@ admin.initializeApp({
 const db = admin.firestore();
 
 // Server methods
-const express = require('express')
+const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const io = new (require('socket.io').Server)(http);
 
 app.use(express.static(__dirname + '/client'));
 app.get('/', (req, res) => {
@@ -28,9 +28,10 @@ http.listen(3000, () => {
 io.on('connection', (socket) => {
     console.log('a user connected');
     for (const device of devices) {
-        require('http').get(`http://localhost:4000/reading/${device}/10`, res => {
+        require('http').get(`http://localhost:4000/reading/${device}/100`, res => {
             res.on('data', (data) => {
-                io.emit('init', {device: device, plotdata: JSON.parse(data.toString())});
+                console.log(JSON.parse(data.toString()));
+                socket.emit('init', {device: device, plotdata: JSON.parse(data.toString())});
             });
         });
     }

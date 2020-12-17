@@ -4,7 +4,7 @@ const mqtt = require('mqtt');
 
 const {
     MQTT_HOST = 'localhost',
-    PUBLISH_FREQ = 2,
+    PUBLISH_FREQ = 1,
     TEMP_DEVICE_COUNT = 3,
     TEMP_MAX = 30,
     TEMP_MIN = 20,
