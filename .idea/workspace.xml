@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5912f265-e492-490e-b594-9293de7a0ece" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main/frontend/client/public/dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SensorDashboard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SensorDashboard.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/broker.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/api/broker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/api/module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/sensors/dummy_sensors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/client/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,36 +48,32 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\main" />
+      <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\frontend\client\public" />
+      <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\frontend\client" />
       <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\api\serviceKeys" />
       <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\client" />
-      <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\api" />
-      <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\dashboard" />
-      <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.dashboard.js">
-    <configuration name="api.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/api/api.js" working-dir="$PROJECT_DIR$">
+  <component name="RunManager" selected="Node.js.server.js">
+    <configuration name="broker.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/api/broker.js" working-dir="$PROJECT_DIR$/main/api">
       <method v="2" />
     </configuration>
-    <configuration name="broker.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/api/broker.js" working-dir="$PROJECT_DIR$">
+    <configuration name="dummy_sensors.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/sensors/dummy_sensors.js" working-dir="$PROJECT_DIR$/main/sensors">
       <method v="2" />
     </configuration>
-    <configuration name="client.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/client/client.js" working-dir="$PROJECT_DIR$">
+    <configuration name="module.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/api/module.js" working-dir="$PROJECT_DIR$/main/api">
       <method v="2" />
     </configuration>
-    <configuration name="dashboard.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/dashboard/dashboard.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
-    <configuration name="module.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/api/module.js" working-dir="$PROJECT_DIR$/api">
+    <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/frontend/server.js" working-dir="$PROJECT_DIR$/main/frontend">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.dashboard.js" />
+        <item itemvalue="Node.js.server.js" />
         <item itemvalue="Node.js.broker.js" />
         <item itemvalue="Node.js.module.js" />
-        <item itemvalue="Node.js.client.js" />
-        <item itemvalue="Node.js.api.js" />
+        <item itemvalue="Node.js.dummy_sensors.js" />
       </list>
     </recent_temporary>
   </component>
@@ -86,7 +90,7 @@
       <workItem from="1608120543347" duration="1636000" />
       <workItem from="1608124933163" duration="518000" />
       <workItem from="1608129377637" duration="2595000" />
-      <workItem from="1608163805652" duration="6271000" />
+      <workItem from="1608163805652" duration="7681000" />
     </task>
     <task id="LOCAL-00001" summary="Combined api with module into single backend server">
       <created>1608170382268</created>
@@ -95,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608170382268</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Modified gitignores">
+      <created>1608170806761</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608170806761</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +126,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Combined api with module into single backend server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Combined api with module into single backend server" />
+    <MESSAGE value="Modified gitignores" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified gitignores" />
   </component>
 </project>

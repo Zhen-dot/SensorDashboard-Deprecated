@@ -1,6 +1,6 @@
-const app = require('express')();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const devices = Array('dummy-temp-1', 'dummy-temp-2', 'dummy-temp-3');
+
+// Firestore
 const admin = require('firebase-admin');
 const serviceAccount = require('../api/serviceKeys/serviceAccountKey.json');
 admin.initializeApp({
@@ -8,13 +8,18 @@ admin.initializeApp({
 });
 const db = admin.firestore();
 
-const devices = Array('dummy-temp-1', 'dummy-temp-2', 'dummy-temp-3');
+// Server methods
+const express = require('express')
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
+app.use(express.static(__dirname + '/client'));
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/client/dashboard.html');
 });
 
-
+// Start server
 http.listen(3000, () => {
     console.log('listening on *:3000');
 });
