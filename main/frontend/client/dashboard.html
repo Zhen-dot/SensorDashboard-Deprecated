@@ -4,117 +4,15 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" href="public/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        table {
-            text-align: center;
-            margin: 20px;
-        }
-
-        th {
-            padding: 20px 20px;
-            border-spacing: 10px;
-        }
-
-        td {
-            column-width: 100px;
-            padding: 15px 15px 20px;
-        }
-
-        .row {
-            padding: 10px;
-            display: inline-block;
-            float: left;
-        }
-
-        canvas {
-            margin: 20px;
-            width: 1000px !important;
-            height: 500px !important;
-        }
-
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 </head>
 <body>
 
-<div style="clear: both"></div>
-
-<div class="row">
-    <table style="float: left">
-        <tr>
-            <th colspan="3">Sensor 1</th>
-        </tr>
-        <tr>
-            <td>Temperature</td>
-            <td id="dummy-temp-1/temperature">-</td>
-            <td rowspan="3"><canvas id="dummy-temp-1/graph"></canvas></td>
-        </tr>
-        <tr>
-            <td>Humidity</td>
-            <td id="dummy-temp-1/humidity">-</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-</div>
-
-<div style="clear: both"></div>
-
-<div class="row">
-    <table style="float: left">
-        <tr>
-            <th colspan="3">Sensor 2</th>
-        </tr>
-        <tr>
-            <td>Temperature</td>
-            <td id="dummy-temp-2/temperature">-</td>
-            <td rowspan="3"><canvas id="dummy-temp-2/graph"></canvas></td>
-        </tr>
-        <tr>
-            <td>Humidity</td>
-            <td id="dummy-temp-2/humidity">-</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-</div>
-
-<div style="clear: both"></div>
-
-<div class="row">
-    <table style="float: left">
-        <tr>
-            <th colspan="3">Sensor 3</th>
-        </tr>
-        <tr>
-            <td>Temperature</td>
-            <td id="dummy-temp-3/temperature">-</td>
-            <td rowspan="3"><canvas id="dummy-temp-3/graph"></canvas></td>
-        </tr>
-        <tr>
-            <td>Humidity</td>
-            <td id="dummy-temp-3/humidity">-</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-</div>
-
-<div style="clear: both"></div>
-
-
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 <script src="public/functions.js"></script>
 <script src="public/dashboard.js"></script>
 </html>

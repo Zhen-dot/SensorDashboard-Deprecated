@@ -11,16 +11,15 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore().collection('readings');
 
-let sensors = {};
+let devices = {};
 
 (async () => {
     await db.get().then(docs => {
         docs.forEach(doc => {
             initDevice(doc.id, doc.data());
             db.doc(doc.id).onSnapshot(snapshot => {
-                console.log(snapshot);
                 const data = snapshot.data();
-                updateDevice(doc.id, data.timestamp, data.temperature.toFixed(2), data.humidity.toFixed(2));
+                updateDevice(doc.id, getTime(data.timestamp), data.temperature.toFixed(2), data.humidity.toFixed(2));
             })
         })
     })

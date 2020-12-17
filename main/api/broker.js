@@ -3,7 +3,7 @@ const mqtt = require('mqtt');
 
 const {
     MQTT_HOST = 'localhost',
-    TEMP_DEVICE_COUNT = 3,
+    TEMP_DEVICE_COUNT = 4, // TODO
 } = process.env;
 
 
@@ -21,10 +21,11 @@ exec("mosquitto", (error, stdout, stderr) => {
     console.log(`stdout: ${stdout}`);
 });
 
+
+// Topics
 const topics = [...Array(TEMP_DEVICE_COUNT).keys()].map(i => `site-a/data/dummy-temp-${i + 1}/temp`);
 console.log(topics);
 
-const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 // Mosquitto
 const client = mqtt.connect(`mqtt://${MQTT_HOST}`);
@@ -38,6 +39,10 @@ client.on("connect", () => {
 client.on("error", (error) => {
     console.log(`connection error encountered ${error}`);
 });
+
+
+// Posts device updates to module
+const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 client.on("message", (topic, message, packet) => {
     console.log(`Message received\n topic: ${topic}\n message: ${message}\n`);
