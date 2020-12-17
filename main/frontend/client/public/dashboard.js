@@ -1,72 +1,28 @@
-function getTime(time) {
-    return new Date(time).toLocaleTimeString()
-}
+const firebaseConfig = {
+    apiKey: "AIzaSyBC7oxn8XeQVhD2MlM913K2DmcOnYUy24U",
+    authDomain: "sensordashboard-c797c.firebaseapp.com",
+    projectId: "sensordashboard-c797c",
+    storageBucket: "sensordashboard-c797c.appspot.com",
+    messagingSenderId: "932401489854",
+    appId: "1:932401489854:web:c092e82c06477aa0c0fbef",
+    measurementId: "G-YVEX7TZ59Y"
+};
 
-function initDevice(device, data) {
-    sensors[device] = {
-        temperature: document.getElementById(`${device}/temperature`),
-        humidity: document.getElementById(`${device}/humidity`),
-        chart: new Chart(document.getElementById(`${device}/graph`).getContext('2d'), {
-            type: 'line',
-            data: {
-                labels: data.map(d => getTime(d.time)),
-                datasets: [
-                    {
-                        label: 'Temperature',
-                        data: data.map(d => d.temperature.toFixed(2)),
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)'
-                    }, {
-                        label: 'Humidity',
-                        data: data.map(d => d.humidity.toFixed(2)),
-                        borderColor: 'rgba(192, 192, 192, 1)',
-                        backgroundColor: 'rgba(192, 192, 192, 0.2)'
-                    },
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 100
-                        }
-                    }]
-                },
-                elements: {
-                    point: {
-                        radius: 0
-                    }
-                },
-            }
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore().collection('readings');
+
+let sensors = {};
+
+(async () => {
+    await db.get().then(docs => {
+        docs.forEach(doc => {
+            initDevice(doc.id, doc.data());
+            db.doc(doc.id).onSnapshot(snapshot => {
+                console.log(snapshot);
+                const data = snapshot.data();
+                updateDevice(doc.id, data.timestamp, data.temperature.toFixed(2), data.humidity.toFixed(2));
+            })
         })
-    }
-}
-
-function updateDevice(sensor, time, temperature, humidity) {
-    sensors[sensor].temperature.innerText = temperature;
-    sensors[sensor].humidity.innerText = humidity;
-
-    // Update chart
-    const chart = sensors[sensor].chart;
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.data.labels.unshift(getTime(time));
-    chart.data.datasets[0].data.unshift(temperature);
-    chart.data.datasets[1].data.unshift(humidity);
-    chart.update();
-}
-
-let sensors = {}
-const socket = io();
-
-socket.on('init', (msg) => {
-    initDevice(msg.device, msg.plotdata);
-});
-
-socket.on('realtime', (msg) => {
-    updateDevice(msg.sensor, msg.time, msg.temperature.toFixed(2), msg.humidity.toFixed(2));
-});
+    })
+})();
 
