@@ -3,18 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5912f265-e492-490e-b594-9293de7a0ece" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SensorDashboard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SensorDashboard.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/api/broker.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/api/broker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/api/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/api/module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/frontend/client/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/client/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/frontend/client/public/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/client/public/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/frontend/client/public/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/client/public/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/frontend/client/public/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/client/public/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/frontend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/sensors/dummy_sensors.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/sensors/dummy_sensors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,14 +53,14 @@
       <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\api\serviceKeys" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.server.js">
+  <component name="RunManager" selected="Node.js.broker.js">
     <configuration name="dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SensorDashboard/main/frontend/client/dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="broker.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/api/broker.js" working-dir="$PROJECT_DIR$/main/api">
+    <configuration name="broker.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="main/api/broker.js" working-dir="$PROJECT_DIR$/">
       <method v="2" />
     </configuration>
-    <configuration name="dummy_sensors.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/sensors/dummy_sensors.js" working-dir="$PROJECT_DIR$/main/sensors">
+    <configuration name="dummy_sensors.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="main/sensors/dummy_sensors.js" working-dir="$PROJECT_DIR$/">
       <method v="2" />
     </configuration>
     <configuration name="module.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/api/module.js" working-dir="$PROJECT_DIR$/main/api">
@@ -77,12 +69,19 @@
     <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main/frontend/server.js" working-dir="$PROJECT_DIR$/main/frontend">
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.dashboard.html" />
+      <item itemvalue="Node.js.broker.js" />
+      <item itemvalue="Node.js.dummy_sensors.js" />
+      <item itemvalue="Node.js.module.js" />
+      <item itemvalue="Node.js.server.js" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.module.js" />
-        <item itemvalue="Node.js.server.js" />
         <item itemvalue="Node.js.broker.js" />
         <item itemvalue="Node.js.dummy_sensors.js" />
+        <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Node.js.module.js" />
         <item itemvalue="JavaScript Debug.dashboard.html" />
       </list>
     </recent_temporary>
@@ -104,7 +103,8 @@
       <workItem from="1608187456881" duration="48000" />
       <workItem from="1608188976965" duration="9044000" />
       <workItem from="1608211725091" duration="7131000" />
-      <workItem from="1608249795763" duration="8719000" />
+      <workItem from="1608249795763" duration="10117000" />
+      <workItem from="1608260214436" duration="2942000" />
     </task>
     <task id="LOCAL-00001" summary="Combined api with module into single backend server">
       <created>1608170382268</created>
@@ -148,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608219265982</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added modals for displaying detailed data of each device">
+      <created>1608258657428</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608258657428</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +180,7 @@
     <MESSAGE value="Final build before Vue.js" />
     <MESSAGE value="Removed socket dependencies, dashboard now updates in realtime by directly listening to firestore changes" />
     <MESSAGE value="Added dynamic devices compatibility" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added dynamic devices compatibility" />
+    <MESSAGE value="Added modals for displaying detailed data of each device" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added modals for displaying detailed data of each device" />
   </component>
 </project>

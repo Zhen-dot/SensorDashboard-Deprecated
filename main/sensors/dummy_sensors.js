@@ -12,6 +12,8 @@ const {
     HUMID_MIN = 55,
 } = process.env;
 
+console.log(TEMP_DEVICE_COUNT);
+
 const tempMin = Number(TEMP_MIN);
 const tempMax = Number(TEMP_MAX);
 const humidMax = Number(HUMID_MAX);

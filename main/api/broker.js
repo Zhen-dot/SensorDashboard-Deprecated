@@ -6,7 +6,6 @@ const {
     TEMP_DEVICE_COUNT = 3, // TODO
 } = process.env;
 
-
 // Start mosquitto server
 const { exec } = require('child_process');
 exec("mosquitto", (error, stdout, stderr) => {
@@ -23,7 +22,7 @@ exec("mosquitto", (error, stdout, stderr) => {
 
 
 // Topics
-const topics = [...Array(TEMP_DEVICE_COUNT).keys()].map(i => `site-a/data/dummy-temp-${i + 1}/temp`);
+const topics = Array.from({length: TEMP_DEVICE_COUNT}, (_, i) => i + 1).map(i => `site-a/data/dummy-temp-${i}/temp`);
 console.log(topics);
 
 
