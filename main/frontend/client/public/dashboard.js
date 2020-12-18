@@ -19,9 +19,25 @@ let devices = {};
             initDevice(doc.id, doc.data());
             db.doc(doc.id).onSnapshot(snapshot => {
                 const data = snapshot.data();
-                updateDevice(doc.id, getTime(data.timestamp), data.temperature.toFixed(2), data.humidity.toFixed(2));
+                updateDevice(doc.id, getTime(data.time), data.temperature.toFixed(2), data.humidity.toFixed(2));
             })
         })
-    })
+    });
+
+    // Close details when clicking outside a modal
+    window.onclick = (ev) => {
+        const modals = Object.keys(devices).map(o => devices[o].modal);
+        const i = modals.indexOf(ev.target);
+        if (i !== -1) {
+            modals[i].style.display = "none";
+        }
+    }
 })();
 
+// const {
+//     NUMBER_OF_PEOPLE = 6,
+//     PEOPLE_OF_NUMBER = 4, // TODO
+// } = process.env;
+//
+// console.log(NUMBER_OF_PEOPLE)
+// console.log(PEOPLE_OF_NUMBER)

@@ -3,7 +3,7 @@ const mqtt = require('mqtt');
 
 const {
     MQTT_HOST = 'localhost',
-    TEMP_DEVICE_COUNT = 4, // TODO
+    TEMP_DEVICE_COUNT = 3, // TODO
 } = process.env;
 
 

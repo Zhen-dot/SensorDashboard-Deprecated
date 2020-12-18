@@ -5,7 +5,7 @@ const mqtt = require('mqtt');
 const {
     MQTT_HOST = 'localhost',
     PUBLISH_FREQ = 1,
-    TEMP_DEVICE_COUNT = 4, // TODO
+    TEMP_DEVICE_COUNT = 3, // TODO
     TEMP_MAX = 30,
     TEMP_MIN = 20,
     HUMID_MAX = 80,

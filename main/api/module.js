@@ -17,7 +17,7 @@ class Data {
         // Writing to firestore
         (async () => {
             await db.doc(`readings/${this.deviceId}`).set({
-                timestamp: this.timestamp,
+                time: this.timestamp,
                 temperature: this.temperature,
                 humidity: this.humidity
             })
@@ -59,11 +59,10 @@ const db = admin.firestore();
 // http
 const express = require('express');
 const app = express();
+app.use(require('cors')());
 app.use(express.json());
 
 app.post('/broker', (req, res) => {
-    console.log(req.body);
-    console.log(typeof req.body);
     new Data(req.body).insert();
     res.status(200);
 });
@@ -80,3 +79,4 @@ app.get('/reading/:device/:limit', (req, res) => {
 
 // Listen
 app.listen(4000);
+console.log('Module listening on port 4000');
