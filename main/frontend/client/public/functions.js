@@ -2,9 +2,12 @@ function getTime(time) {
     return new Date(time).toLocaleTimeString()
 }
 
+function id(id) {
+    return document.getElementById(id)
+}
+
 function initChart(ctx, title, data, limit) {
     if (data.length > limit) data = data.slice(0, limit);
-
     return new Chart(ctx, {
         type: 'line',
         data: {
@@ -23,10 +26,7 @@ function initChart(ctx, title, data, limit) {
                 },
             ]
         },
-        // plugins: [ChartDataLabels],
         options: {
-            // align: 'top',
-            // offset: 100,
             title: {
                 display: true,
                 text: title
@@ -51,6 +51,7 @@ function initChart(ctx, title, data, limit) {
 function initDevice(device, data) {
     // Create display for device
     const div = document.createElement("div");
+    div.id = device;
     div.innerHTML = `
     <div style="clear: both"></div>
         <div id="${device}/modal" class="modal">
@@ -72,16 +73,16 @@ function initDevice(device, data) {
             </tr>
             <tr>
                 <td>Last updated</td>
-                <td id="${device}/update">{{ message }}</td>
+                <td>{{ update }}</td>
                 <td rowspan="4"><canvas id="${device}/realtime_graph" class="realtime_canvas"></canvas></td>
             </tr>
             <tr>
                 <td>Temperature</td>
-                <td id="${device}/temperature">{{ message }}</td>
+                <td>{{ temperature }}</td>
             </tr>
             <tr>
                 <td>Humidity</td>
-                <td id="${device}/humidity">{{ message }}</td>
+                <td>{{ humidity }}</td>
             </tr>
             <tr>
                 <td colspan="2" style="vertical-align: top"><button id="${device}/detailsBtn" type="button">details</button></td>
@@ -91,25 +92,34 @@ function initDevice(device, data) {
     `;
     // Append html to document
     document.body.appendChild(div);
-
     // Init params
     devices[device] = {
-        update: new Vue({el: `[id="${device}/update"]`, data: {message: '-'}}),
-        temperature: new Vue({el: `[id="${device}/temperature"]`, data: {message: '-'}}),
-        humidity: new Vue({el: `[id="${device}/humidity"]`, data: {message: '-'}}),
-        detailsBtn: document.getElementById(`${device}/detailsBtn`),
-        modal: document.getElementById(`${device}/modal`),
-        details_graph: initChart(document.getElementById(`${device}/details_graph`).getContext('2d'), `Last ${1} updates`, [data], 1),
-        realtime_graph: initChart(document.getElementById(`${device}/realtime_graph`).getContext('2d'), 'Live Updates',[data], 10)
+        msg: new Vue({
+            el: `[id="${device}"]`,
+            data: {
+                update: '-',
+                temperature: '-',
+                humidity: '-'
+            },
+        }),
+        btn: id(`${device}/detailsBtn`),
+        modal: id(`${device}/modal`),
+        details_graph: initChart(id(`${device}/details_graph`), `Last ${1} updates`, [data], 1),
+        realtime_graph: initChart(id(`${device}/realtime_graph`), 'Live Updates', [data], 10)
     }
 
     // Show modal
-    devices[device].detailsBtn.onclick = () => {
+    devices[device].btn.onclick = () => {
         // Calculations
         const lim = 50;
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `http://localhost:4000/reading/${device}/${lim}`);
         xhr.send();
+
+
+        // Display modal
+        devices[device].modal.style.display = "block";
+
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 const chart = devices[device].details_graph;
@@ -121,22 +131,21 @@ function initDevice(device, data) {
                 chart.data.datasets[1].data = q_data.map(o => o.humidity.toFixed(2));
 
                 // Update title & refresh
-                chart.options.title.text = `Last ${lim} updates`
+                chart.options.title.text = `Last ${lim} updates from ${getTime(q_data[0].time)} to ${getTime(q_data[q_data.length - 1].time)}`
                 chart.update();
-                devices[device].modal.style.display = "block";
             }
         }
     }
 
     // Close modal
-    const closes = document.getElementsByClassName("close");
-    closes[closes.length - 1].onclick = () => devices[device].modal.style.display = "none";
+    const close_btns = document.getElementsByClassName("close");
+    close_btns[close_btns.length - 1].onclick = () => devices[device].modal.style.display = "none";
 }
 
 function updateDevice(device, time, temperature, humidity) {
-    devices[device].update.message = time;
-    devices[device].temperature.message = temperature;
-    devices[device].humidity.message = humidity;
+    devices[device].msg.update = time;
+    devices[device].msg.temperature = temperature;
+    devices[device].msg.humidity = humidity;
 
     // Update realtime graph
     const chart = devices[device].realtime_graph;

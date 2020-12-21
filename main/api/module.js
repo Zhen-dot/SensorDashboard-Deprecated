@@ -48,34 +48,44 @@ const serviceAccount = require('./serviceKeys/serviceAccountKey.json');
 admin.initializeApp({credential: admin.credential.cert(serviceAccount)});
 const db = admin.firestore();
 
-// function createDatabase() {
-//     influx.getDatabaseNames().then(names => {
-//         if (!names.includes('sensor_dashboard')) {
-//             return influx.createDatabase('sensor_dashboard');
-//         }
-//     }).catch(error => console.log(`Error creating database! ${error.stack}`));
-// }
+// Creates database if not exist
+influx.getDatabaseNames().then(names => {
+    if (!names.includes('sensor_dashboard')) {
+        return influx.createDatabase('sensor_dashboard');
+    }
+}).catch(error => console.log(`Error creating database! ${error.stack}`));
+
 
 // http
 const express = require('express');
 const app = express();
-app.use(require('cors')());
-app.use(express.json());
+const router = express.Router();
 
-app.post('/broker', (req, res) => {
+router.post('/broker', (req, res) => {
     new Data(req.body).insert();
     res.status(200);
 });
 
-app.get('/reading/:device/:limit', (req, res) => {
+// router.get('/reading/:device/:limit', (req, res) => {
+//     influx.query(`
+//     select * from readings
+//     where device = '${req.params.device}'
+//     order by time desc
+//     limit ${req.params.limit}
+//     `).then(result => res.json(result)).catch(error => res.status(500).send(error.stack));
+// });
+
+router.get('/reading/:device/:limit', (req, res) => {
     influx.query(`
-    select * from readings
-    where device = '${req.params.device}'
-    order by time desc
-    limit ${req.params.limit}
-    `).then(result => res.json(result)).catch(error => res.status(500).send(error.stack));
+    from(bucket: "sensor_dashboard")
+    `).then(result => {console.log(result); res.json(result)}).catch(error => res.status(500).send(error.stack));
 });
 
+
+
+app.use(require('cors')());
+app.use(express.json());
+app.use('/', router);
 
 // Listen
 app.listen(4000);

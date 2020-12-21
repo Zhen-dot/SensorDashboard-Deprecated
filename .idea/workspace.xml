@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5912f265-e492-490e-b594-9293de7a0ece" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/api/broker.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/api/broker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/api/module.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/api/module.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/frontend/client/public/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/client/public/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/frontend/client/public/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/frontend/client/public/functions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/sensors/dummy_sensors.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/sensors/dummy_sensors.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +54,7 @@
       <recent name="C:\Users\Zhen\OneDrive - Sunway Education Group\Tanand\SensorDashboard\api\serviceKeys" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.broker.js">
+  <component name="RunManager" selected="Node.js.module.js">
     <configuration name="dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SensorDashboard/main/frontend/client/dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -73,15 +74,15 @@
       <item itemvalue="JavaScript Debug.dashboard.html" />
       <item itemvalue="Node.js.broker.js" />
       <item itemvalue="Node.js.dummy_sensors.js" />
-      <item itemvalue="Node.js.module.js" />
       <item itemvalue="Node.js.server.js" />
+      <item itemvalue="Node.js.module.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.module.js" />
         <item itemvalue="Node.js.broker.js" />
         <item itemvalue="Node.js.dummy_sensors.js" />
         <item itemvalue="Node.js.server.js" />
-        <item itemvalue="Node.js.module.js" />
         <item itemvalue="JavaScript Debug.dashboard.html" />
       </list>
     </recent_temporary>
@@ -104,7 +105,11 @@
       <workItem from="1608188976965" duration="9044000" />
       <workItem from="1608211725091" duration="7131000" />
       <workItem from="1608249795763" duration="10117000" />
-      <workItem from="1608260214436" duration="2942000" />
+      <workItem from="1608260214436" duration="7662000" />
+      <workItem from="1608274168507" duration="4614000" />
+      <workItem from="1608514661838" duration="8000" />
+      <workItem from="1608517503142" duration="1376000" />
+      <workItem from="1608520661840" duration="12490000" />
     </task>
     <task id="LOCAL-00001" summary="Combined api with module into single backend server">
       <created>1608170382268</created>
@@ -155,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608258657428</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="First stable build">
+      <created>1608267719338</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608267719338</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +193,7 @@
     <MESSAGE value="Removed socket dependencies, dashboard now updates in realtime by directly listening to firestore changes" />
     <MESSAGE value="Added dynamic devices compatibility" />
     <MESSAGE value="Added modals for displaying detailed data of each device" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added modals for displaying detailed data of each device" />
+    <MESSAGE value="First stable build" />
+    <option name="LAST_COMMIT_MESSAGE" value="First stable build" />
   </component>
 </project>

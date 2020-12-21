@@ -33,11 +33,3 @@ let devices = {};
         }
     }
 })();
-
-// const {
-//     NUMBER_OF_PEOPLE = 6,
-//     PEOPLE_OF_NUMBER = 4, // TODO
-// } = .env;
-//
-// console.log(NUMBER_OF_PEOPLE)
-// console.log(PEOPLE_OF_NUMBER)
